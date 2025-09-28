@@ -1,0 +1,103 @@
+classDiagram
+    class User {
+        +userId: String
+        +userType: Enum
+        +contactInfo: Object
+        +preferredLanguage: String
+        +locationData: Object
+        +verificationStatus: Enum
+        +register()
+        +authenticate()
+        +updateProfile()
+    }
+    
+    class Vendor {
+        +vendorId: String
+        +businessInfo: Object
+        +productCategories: Array
+        +ratingsScore: Float
+        +verificationLevel: Integer
+        +bankingInfo: Object
+        +createListing()
+        +manageInventory()
+        +processOrder()
+        +viewAnalytics()
+    }
+    
+    class Product {
+        +productId: String
+        +title: Object~MultiLanguage~
+        +description: Object~MultiLanguage~
+        +category: String
+        +subcategory: String
+        +price: Object~MultiCurrency~
+        +images: Array
+        +attributes: Object
+        +origin: String
+        +certifications: Array
+        +inventory: Integer
+        +createProduct()
+        +updateProduct()
+        +translateDetails()
+    }
+    
+    class Order {
+        +orderId: String
+        +buyerId: String
+        +sellerId: String
+        +products: Array
+        +totalAmount: Object~MultiCurrency~
+        +status: Enum
+        +paymentStatus: Enum
+        +createdAt: DateTime
+        +updatedAt: DateTime
+        +placeOrder()
+        +processPayment()
+        +updateStatus()
+        +generateInvoice()
+    }
+    
+    class Payment {
+        +paymentId: String
+        +orderId: String
+        +amount: Object~MultiCurrency~
+        +paymentMethod: Enum
+        +status: Enum
+        +escrowStatus: Enum
+        +initiatePayment()
+        +verifyPayment()
+        +releaseEscrow()
+        +refundPayment()
+    }
+    
+    class Shipment {
+        +shipmentId: String
+        +orderId: String
+        +status: Enum
+        +trackingInfo: Object
+        +origin: Location
+        +destination: Location
+        +estimatedDelivery: DateTime
+        +actualDelivery: DateTime
+        +documents: Array
+        +createShipment()
+        +updateStatus()
+        +generateDocuments()
+        +optimizeRoute()
+    }
+    
+    class AIService {
+        +recommendProducts()
+        +detectFraud()
+        +translateContent()
+        +categorizeProducts()
+        +forecastDemand()
+        +optimizeRoutes()
+    }
+    
+    User <|-- Vendor
+    Vendor "1" --> "*" Product : creates
+    User "1" --> "*" Order : places
+    Order "1" --> "1" Payment : has
+    Order "1" --> "1" Shipment : creates
+    Product "*" --> "*" Order : included in 

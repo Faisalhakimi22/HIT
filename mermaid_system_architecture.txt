@@ -1,0 +1,64 @@
+graph TB
+    subgraph "User Interfaces"
+        A1[Web Portal]
+        A2[Mobile App]
+        A3[USSD/SMS Interface]
+        A4[Vendor Dashboard]
+    end
+    
+    subgraph "Platform Core"
+        B1[API Gateway]
+        B2[Authentication & Security]
+        B3[AI Engine]
+        B4[Translation Services]
+        B5[Analytics & Reporting]
+    end
+    
+    subgraph "HIT Bazaar"
+        C1[Vendor Management]
+        C2[Product Catalog]
+        C3[Local Market Analytics]
+        C4[Community Verification]
+    end
+    
+    subgraph "HIT Global"
+        D1[International Portal]
+        D2[Compliance Management]
+        D3[Market Intelligence]
+        D4[Trade Documentation]
+    end
+    
+    subgraph "HIT Wallet"
+        E1[Payment Processing]
+        E2[Multi-currency Engine]
+        E3[Escrow Services]
+        E4[Mobile Money Integration]
+        E5[Hawala Bridge]
+    end
+    
+    subgraph "HIT Freight"
+        F1[Shipment Tracking]
+        F2[Route Optimization]
+        F3[Customs Documentation]
+        F4[Last-mile Delivery]
+    end
+    
+    A1 & A2 & A3 & A4 --> B1
+    B1 --> B2 & B3 & B4 & B5
+    B1 --> C1 & D1 & E1 & F1
+    
+    %% Core connections
+    B2 --- E1
+    B3 --- C2
+    B3 --- D3
+    B4 --- C2
+    B4 --- D1
+    B5 --- C3
+    B5 --- D3
+    
+    %% Module interconnections
+    C1 --- E1
+    C2 --- F1
+    D1 --- E1
+    D2 --- F3
+    E1 --- F1 
